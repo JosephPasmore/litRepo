@@ -1,16 +1,28 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Provider } from 'react-redux';
+import napcoreReducers from './reducers';
+import { createStore, applyMiddleware, combineReducers } from 'redux';
+import createSagaMiddleware from 'redux-saga';
+import helloSaga from './sagas';
+import Container from './Container';
+
+const reducers = {
+  napcoreState: napcoreReducers,
+};
+
+const sagaMiddleware = createSagaMiddleware();
+const store = createStore(
+  combineReducers(reducers),
+  applyMiddleware(sagaMiddleware)
+);
+sagaMiddleware.run(helloSaga);
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Napcore</h1>
-        </header>
-      </div>
+      <Provider store={store}>
+        <Container />
+      </Provider>
     );
   }
 }

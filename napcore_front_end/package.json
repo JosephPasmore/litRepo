@@ -9,7 +9,10 @@
     "react-dom": "^16.4.1",
     "react-scripts": "1.1.4",
     "terra-base": "^3.17.0",
-    "terra-infinite-list": "^1.7.0"
+    "terra-infinite-list": "^1.7.0",
+    "redux": "^4.0.0",
+    "react-redux": "^5.0.7",
+    "redux-saga": "^0.16.0"
   },
   "scripts": {
     "start": "react-scripts start",
