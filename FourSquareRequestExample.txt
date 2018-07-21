@@ -9,3 +9,14 @@ curl -X GET -G \
     -d ll="39.1102,-94.581078" \
     -d query="coffee" \
     -d limit=1
+
+Sujith converted the curl statement to a URL:
+https://api.foursquare.com/v2/venues/explore?client_id=W1DPYQJL2GLAUYL45GWDQGVOKE4C4OFLLJZMXJRCSXTNCNNO&client_secret=KZW4YQZELCAJU0F0L15YNUQB0GMQV45ZPTITUWNVOYK2QCQD&v=20180323&ll=39.1102,-94.581078&query=coffee&limit=1
+
+Foursquare API usages:
+
+Searches the nearby area for venues- we can display that to the user to give them ideas of where to nap. If there has already been a review posted for that venue, then we will display that when the user clicks on it from the list. This would require us to use one of the fields returned in the Foursquare API response as the location ID in our database
+
+Create a list of venues that we can register as 'nap' intent. Or just create a list of venues that each user prefers for their naps. Except our database could take care of this functionality for us :-|
+
+Use the explore feature to fine legal places to nap?
