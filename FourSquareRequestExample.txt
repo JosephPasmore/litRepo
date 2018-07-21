@@ -1,0 +1,11 @@
+
+This is an example request to the Four Square API using my client ID and secret. V stands for ? ll is latitude and longitude. query is ? limit is the number of the results in the response. I changed the latitude and longitude to River Market in downtown KC :)
+
+curl -X GET -G \
+  'https://api.foursquare.com/v2/venues/explore' \
+    -d client_id="W1DPYQJL2GLAUYL45GWDQGVOKE4C4OFLLJZMXJRCSXTNCNNO" \
+    -d client_secret="KZW4YQZELCAJU0F0L15YNUQB0GMQV45ZPTITUWNVOYK2QCQD" \
+    -d v="20180323" \
+    -d ll="39.1102,-94.581078" \
+    -d query="coffee" \
+    -d limit=1
