@@ -1,4 +1,4 @@
-import { put, takeLatest, call, all } from 'redux-saga/effects';
+import { put, takeLatest, call, fork } from 'redux-saga/effects';
 import {
   RETRIEVE_NEARBY_LOCATIONS,
   RETRIEVE_NEARBY_LOCATIONS_SUCCESS,
@@ -51,9 +51,9 @@ function* submitCommentSagas() {
 }
 
 export default function* NapCoreSagas() {
-  yield all([
-    fetchNearbyLocationsSagas,
-    searchForLocationsSagas,
-    submitCommentSagas,
-  ]);
+  yield [
+    fork(fetchNearbyLocationsSagas),
+    fork(searchForLocationsSagas),
+    fork(submitCommentSagas),
+  ];
 }

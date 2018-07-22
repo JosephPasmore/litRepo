@@ -4,7 +4,7 @@ import Img from 'react-image';
 
 class SummaryView extends Component {
   constructor(props) {
-    super();
+    super(props);
     this.renderDetailView = this.renderDetailView.bind(this);
   }
   componentDidMount() {

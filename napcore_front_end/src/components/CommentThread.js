@@ -5,6 +5,7 @@ import Textarea from 'terra-form-textarea';
 import Button from 'terra-button';
 import Spacer from 'terra-spacer';
 import Arrange from 'terra-arrange';
+import StarRatingComponent from 'react-star-rating-component';
 
 class CommentThread extends Component {
   constructor(props) {
@@ -20,6 +21,7 @@ class CommentThread extends Component {
       buttonEnabled: false,
       value: '',
       comments: comments,
+      commentBoxEnabled: true,
     };
   }
 
@@ -44,6 +46,7 @@ class CommentThread extends Component {
       buttonEnabled: false,
       value: '',
       comments: newComments,
+      commentBoxEnabled: false,
     });
   }
 
@@ -56,8 +59,8 @@ class CommentThread extends Component {
           content={
             <Spacer padding="large">
               <Arrange
-                fitStart={comment.dateTime}
-                fill={comment.text}
+                fitStart={<span>{comment.dateTime}</span>}
+                fill={<span>{comment.text}</span>}
               />
             </Spacer>
           }
@@ -66,12 +69,13 @@ class CommentThread extends Component {
     });
 
     return (
-      <div>
+      <Spacer>
         <List isDivided>
           {commentList}
         </List>
-        <div>
-          <Textarea onChange={this.changeHandler} value={this.state.value} />
+        <Spacer marginTop="large" marginBottom="large">
+          <Arrange fitStart={<span>Add a comment:</span>} fill={<div></div>} />
+          <Textarea onChange={this.changeHandler} value={this.state.value} disabled={!this.state.commentBoxEnabled}/>
           <Arrange
             fill={<div></div>}
             fitEnd={
@@ -79,8 +83,14 @@ class CommentThread extends Component {
             }
             align="center"
           />
-        </div>
-      </div>
+        </Spacer>
+        <Arrange fitStart={<span>Leave a rating:</span>} fill={<div></div>} />
+        <StarRatingComponent
+          name="Rating"
+          starCount={5}
+          editing
+        />
+      </Spacer>
     );
   }
 }

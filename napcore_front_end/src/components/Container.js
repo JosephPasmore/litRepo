@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import SummaryViewList from './SummaryViewList';
-import logo from '../logo.svg';
 import { showDetailView, hideDetailView, retrieveNearbyLocations, searchForLocations, submitComment } from '../actions';
 import SummaryDetailView from './SummaryDetailView';
 import Header from './Header';
@@ -69,7 +68,7 @@ const mapStateToProps = state => ({
   comments: state.napcoreState.comments,
 });
 
-const mapDispatchToProp = dispatch => ({
+const mapDispatchToProps = dispatch => ({
   showDetailView: (locationId) => (
     dispatch(showDetailView(locationId))
   ),
@@ -87,4 +86,4 @@ const mapDispatchToProp = dispatch => ({
   ),
 });
 
-export default connect(mapStateToProps, mapDispatchToProp)(Container);
+export default connect(mapStateToProps, mapDispatchToProps)(Container);

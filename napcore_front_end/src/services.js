@@ -1,6 +1,11 @@
+import axios from 'axios';
+
 const NapCoreService = {
   getNearbyLocations: () => {
-    // axios.get call
+    axios.get('http://172.16.0.170:8080/RedBull/rest/retrieve/service/locations')
+      .then((response) => {
+        console.log(response);
+      });
   },
   searchForLocations: (searchTerm) => {
     // axios.get call
