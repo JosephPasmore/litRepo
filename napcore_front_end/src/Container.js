@@ -1,22 +1,65 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import { connect } from 'react-redux';
 import './App.css';
+import SummaryViewList from './SummaryViewList';
+import logo from './logo.svg';
+import { showDetailView, hideDetailView } from './actions';
+import SummaryDetailView from './SummaryDetailView';
 
 class Container extends Component {
-  compponentDidMount() {
+  componentDidMount() {
     console.log('Test');
   }
 
   render() {
+    let resultView = null;
+    const summaries = [];
+    for (let i = 0; i < 7; i++) {
+      summaries.push({
+        key: i,
+        id: i,
+        url: logo,
+        text: `Summary Text Here ${i}. Summary Text Here ${i}. Summary Text Here ${i}.`,
+        rating: i%5,
+      });
+    }
+
+    if (this.props.detailViewVisible) {
+      resultView = (
+        <SummaryDetailView
+          summary={summaries[this.props.locationId]}
+          onClick={this.props.hideDetailView}
+          locationId ={this.props.locationId}
+        />
+      );
+    } else {
+      resultView = (
+        <SummaryViewList
+          summaries={summaries}
+          onClick={this.props.showDetailView}
+        />
+      );
+    }
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Napcore</h1>
-        </header>
+      <div>
+        {resultView}
       </div>
     );
   }
 }
 
-export default Container;
+const mapStateToProps = state => ({
+  detailViewVisible: state.napcoreState.detailViewVisible,
+  locationId: state.napcoreState.locationId,
+});
+
+const mapDispatchToProp = dispatch => ({
+  showDetailView: (locationId) => (
+    dispatch(showDetailView(locationId))
+  ),
+  hideDetailView: () => (
+    dispatch(hideDetailView())
+  ),
+});
+
+export default connect(mapStateToProps, mapDispatchToProp)(Container);

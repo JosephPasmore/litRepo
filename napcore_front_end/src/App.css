@@ -26,3 +26,29 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+
+.summary-grid {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  height: 450px;
+}
+
+.summary-column {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.detail-view {
+  display: grid;
+  grid-template-columns: 40% 60%;
+  margin-top: 50px;
+}
+
+.parent-margin {
+  margin-left: 150px;
+  margin-right: 150px;
+}
+
+.pointer {
+  cursor: pointer;
+}
