@@ -1,16 +1,42 @@
-import { put, takeLatest, call } from 'redux-saga/effects';
+import { put, takeLatest, call, all } from 'redux-saga/effects';
+import {
+  RETRIEVE_NEARBY_LOCATIONS,
+  RETRIEVE_NEARBY_LOCATIONS_SUCCESS,
+  RETRIEVE_NEARBY_LOCATIONS_FAILED,
+  SEARCH_FOR_LOCATIONS,
+  SEARCH_FOR_LOCATIONS_SUCCESS,
+  SEARCH_FOR_LOCATIONS_FAILED,
+} from "./actions";
 
-export function* testSaga(action) {
+function* fetchNearbyLocationsSaga(action) {
   try {
-    const data = yield call(action.service);
-    yield put({ type: 'SUCCESS', data });
+    const data = yield call(action.service.getNearbyLocations);
+    yield put({ type: RETRIEVE_NEARBY_LOCATIONS_SUCCESS, data });
   } catch (e) {
-    yield put({ type: 'ERROR' });
+    yield put({ type: RETRIEVE_NEARBY_LOCATIONS_FAILED });
   }
 }
 
-function* helloSaga() {
-  yield takeLatest('INCREMENT_ASYNC', testSaga)
+function* fetchNearbyLocationsSagas() {
+  yield takeLatest(RETRIEVE_NEARBY_LOCATIONS, fetchNearbyLocationsSaga)
 }
 
-export default helloSaga;
+function* searchForLocationsSaga(action) {
+  try {
+    const data = yield call(action.service.searchForLocations, action.searchTerm);
+    yield put({ type: SEARCH_FOR_LOCATIONS_SUCCESS, data });
+  } catch (e) {
+    yield put({ type: SEARCH_FOR_LOCATIONS_FAILED });
+  }
+}
+
+function* searchForLocationsSagas() {
+  yield takeLatest(SEARCH_FOR_LOCATIONS, searchForLocationsSaga)
+}
+
+export default function* NapCoreSagas() {
+  yield all([
+    fetchNearbyLocationsSagas,
+    searchForLocationsSagas,
+  ]);
+}

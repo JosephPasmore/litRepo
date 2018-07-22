@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import './App.css';
 import StarRatingComponent from 'react-star-rating-component';
 import Img from 'react-image';
 
