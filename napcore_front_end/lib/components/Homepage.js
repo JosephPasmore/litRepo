@@ -7,64 +7,25 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.scss';
-import InfiniteList from 'terra-infinite-list';
+import Header from './Header';
 
-var App = function (_Component) {
-  _inherits(App, _Component);
+var Homepage = function (_Component) {
+  _inherits(Homepage, _Component);
 
-  function App() {
-    _classCallCheck(this, App);
+  function Homepage() {
+    _classCallCheck(this, Homepage);
 
-    return _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).apply(this, arguments));
+    return _possibleConstructorReturn(this, (Homepage.__proto__ || Object.getPrototypeOf(Homepage)).apply(this, arguments));
   }
 
-  _createClass(App, [{
+  _createClass(Homepage, [{
     key: 'render',
     value: function render() {
-      return React.createElement(
-        'div',
-        { className: 'App' },
-        React.createElement(
-          'header',
-          { className: 'App-header' },
-          React.createElement('img', { src: logo, className: 'App-logo', alt: 'logo' }),
-          React.createElement(
-            'h1',
-            { className: 'App-title' },
-            'Napcore'
-          )
-        ),
-        React.createElement(
-          InfiniteList,
-          null,
-          React.createElement(InfiniteList.Item, { key: 'item-' + 1, content: React.createElement(
-              'div',
-              null,
-              'item 1'
-            ) }),
-          React.createElement(InfiniteList.Item, { key: 'item-' + 2, content: React.createElement(
-              'div',
-              null,
-              'item 2'
-            ) }),
-          React.createElement(InfiniteList.Item, { key: 'item-' + 3, content: React.createElement(
-              'div',
-              null,
-              'item 3'
-            ) }),
-          React.createElement(InfiniteList.Item, { key: 'item-' + 4, content: React.createElement(
-              'div',
-              null,
-              'item 4'
-            ) })
-        )
-      );
+      return React.createElement(Header, { searchForLocations: this.props.searchForLocations });
     }
   }]);
 
-  return App;
+  return Homepage;
 }(Component);
 
-export default App;
+export default Homepage;

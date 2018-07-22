@@ -1,14 +1,16 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import './App.css';
 import SummaryViewList from './SummaryViewList';
-import logo from './logo.svg';
-import { showDetailView, hideDetailView } from './actions';
+import logo from '../logo.svg';
+import { showDetailView, hideDetailView, retrieveNearbyLocations, searchForLocations } from '../actions';
 import SummaryDetailView from './SummaryDetailView';
+import Header from './Header';
+import NapCoreService from '../services';
+
 
 class Container extends Component {
   componentDidMount() {
-    console.log('Test');
+    this.props.retrieveNearbyLocations();
   }
 
   render() {
@@ -41,7 +43,8 @@ class Container extends Component {
       );
     }
     return (
-      <div>
+      <div className="App">
+        <Header searchForLocations={this.props.searchForLocations} />
         {resultView}
       </div>
     );
@@ -51,6 +54,8 @@ class Container extends Component {
 const mapStateToProps = state => ({
   detailViewVisible: state.napcoreState.detailViewVisible,
   locationId: state.napcoreState.locationId,
+  nearbyLocations: state.napcoreState.nearbyLocations,
+  searchedLocations: state.napcoreState.searchedLocations,
 });
 
 const mapDispatchToProp = dispatch => ({
@@ -59,6 +64,12 @@ const mapDispatchToProp = dispatch => ({
   ),
   hideDetailView: () => (
     dispatch(hideDetailView())
+  ),
+  retrieveNearbyLocations: () => (
+    dispatch(retrieveNearbyLocations(NapCoreService))
+  ),
+  searchForLocations: searchTerm => (
+    dispatch(searchForLocations(NapCoreService, searchTerm))
   ),
 });
 

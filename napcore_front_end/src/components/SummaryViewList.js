@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import './App.css';
 import SummaryView from './SummaryView';
 
 class SummaryViewList extends Component {
