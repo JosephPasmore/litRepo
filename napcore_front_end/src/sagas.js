@@ -6,6 +6,9 @@ import {
   SEARCH_FOR_LOCATIONS,
   SEARCH_FOR_LOCATIONS_SUCCESS,
   SEARCH_FOR_LOCATIONS_FAILED,
+  SUBMIT_COMMENT,
+  SUBMIT_COMMENT_SUCCESS,
+  SUBMIT_COMMENT_FAILED,
 } from "./actions";
 
 function* fetchNearbyLocationsSaga(action) {
@@ -34,9 +37,23 @@ function* searchForLocationsSagas() {
   yield takeLatest(SEARCH_FOR_LOCATIONS, searchForLocationsSaga)
 }
 
+function* submitCommentSaga(action) {
+  try {
+    const data = yield call(action.service.submitComment, action.locationId, action.text, action.dateTime);
+    yield put({ type: SUBMIT_COMMENT_SUCCESS, data });
+  } catch (e) {
+    yield put({ type: SUBMIT_COMMENT_FAILED });
+  }
+}
+
+function* submitCommentSagas() {
+  yield takeLatest(SUBMIT_COMMENT, submitCommentSaga)
+}
+
 export default function* NapCoreSagas() {
   yield all([
     fetchNearbyLocationsSagas,
     searchForLocationsSagas,
+    submitCommentSagas,
   ]);
 }
