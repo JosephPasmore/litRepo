@@ -16,11 +16,19 @@ class Container extends Component {
   render() {
     let resultView = null;
     const summaries = [];
+    const pictureUrls = ['https://res.cloudinary.com/gabriel333/image/upload/v1532248375/c3yua121qqzdghgxlqkv.jpg',
+       'https://res.cloudinary.com/gabriel333/image/upload/v1532248657/hjr7sbol0sahvfpp9mgz.jpg',
+       'https://res.cloudinary.com/gabriel333/image/upload/v1532248797/nswnv9gkt0oos9w6uwhg.jpg',
+       'https://res.cloudinary.com/gabriel333/image/upload/v1532248897/bjibgwxhlnxnhrcxwmpy.jpg',
+       'https://res.cloudinary.com/gabriel333/image/upload/v1532249015/nhrf8yh5m7jjosby3ckw.jpg',
+       'https://res.cloudinary.com/gabriel333/image/upload/v1532249151/qayr9dlqoqkfs6rosudq.jpg',
+       'https://res.cloudinary.com/gabriel333/image/upload/v1532249151/qayr9dlqoqkfs6rosudq.jpg']
+
     for (let i = 0; i < 7; i++) {
       summaries.push({
         key: i,
         id: i,
-        url: logo,
+        url: pictureUrls[i],
         text: `Summary Text Here ${i}. Summary Text Here ${i}. Summary Text Here ${i}.`,
         rating: i%5,
       });
