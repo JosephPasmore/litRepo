@@ -10,7 +10,7 @@ class Header extends Component {
         <Arrange
           fitStart={<img src={logo} className="App-logo" alt="logo" />}
           fill={<h1 className="App-title">NapCore</h1>}
-          fitEnd={<Search searchForLocations={this.props.searchForLocations}/>}
+          fitEnd={<Search searchForLocations={this.props.searchForLocations} />}
           align="center"
         />
       </header>

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import SummaryViewList from './SummaryViewList';
 import logo from '../logo.svg';
-import { showDetailView, hideDetailView, retrieveNearbyLocations, searchForLocations } from '../actions';
+import { showDetailView, hideDetailView, retrieveNearbyLocations, searchForLocations, submitComment } from '../actions';
 import SummaryDetailView from './SummaryDetailView';
 import Header from './Header';
 import NapCoreService from '../services';
@@ -31,7 +31,9 @@ class Container extends Component {
         <SummaryDetailView
           summary={summaries[this.props.locationId]}
           onClick={this.props.hideDetailView}
-          locationId ={this.props.locationId}
+          locationId={this.props.locationId}
+          comments={this.props.comments}
+          submitComment={this.props.submitComment}
         />
       );
     } else {
@@ -56,6 +58,7 @@ const mapStateToProps = state => ({
   locationId: state.napcoreState.locationId,
   nearbyLocations: state.napcoreState.nearbyLocations,
   searchedLocations: state.napcoreState.searchedLocations,
+  comments: state.napcoreState.comments,
 });
 
 const mapDispatchToProp = dispatch => ({
@@ -70,6 +73,9 @@ const mapDispatchToProp = dispatch => ({
   ),
   searchForLocations: searchTerm => (
     dispatch(searchForLocations(NapCoreService, searchTerm))
+  ),
+  submitComment: (locationId, text, dateTime) => (
+    dispatch(submitComment(NapCoreService, locationId, text, dateTime))
   ),
 });
 

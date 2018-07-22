@@ -4,6 +4,9 @@ const NapCoreService = {
   },
   searchForLocations: (searchTerm) => {
     // axios.get call
+  },
+  submitComment: (locationId, text, dateTime) => {
+    // axios.post call
   }
 };
 

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import StarRatingComponent from 'react-star-rating-component';
 import Img from 'react-image';
+import CommentThread from './CommentThread';
 
 class SummaryDetailView extends Component {
   componentDidMount() {
@@ -23,6 +24,11 @@ class SummaryDetailView extends Component {
               editing={false} /* is component available for editing, default `true` */
             />
             <p>{this.props.summary.text}</p>
+            <CommentThread
+              locationId={this.props.locationId}
+              comments={this.props.comments}
+              submitComment={this.props.submitComment}
+            />
           </div>
         </div>
       </div>
